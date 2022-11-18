@@ -3,7 +3,7 @@ import './App.css'
 import { FormState, useForm, useFormState} from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { FaStar,FaRegStar } from "react-icons/fa"; 
+import { FaStar,FaRegStar,FaSmileBeam,FaUser,FaShieldAlt,FaLock } from "react-icons/fa"; 
 import { userAdded } from './counterSlice';
 
 const sleep = (ms: number | undefined) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,28 +64,29 @@ function AddForm() {
       <>
     <div className="split left">
     <div className="start">
-        <span>Currencies <br/><span style={{paddingInlineEnd:'50%'}}>Direct</span></span>
+        <FaSmileBeam style={{paddingTop:'15px',color:'pink'}}/><span>Currencies <br/><span style={{paddingInlineEnd:'40%'}}>Direct</span></span>
     </div>
     <div >
-      <div style={{justifyContent:'block center', fontFamily:'Arial',fontSize:'35px',padding:'0% 50% 0% 5%',textAlign: 'justify'}}>
+      <div className='blkCenter'>
         <strong>Get great rates in less than five Minutes</strong>
       </div>
-      <div style={{paddingRight:'65%',paddingLeft:'2%'}}>
-      <ul style={{justifyContent:'flex-start'}}>
-        <li>Free expert advice</li>
-        <li>it's Safe and Secure</li>
-        <li>Free expert advice</li>
+      <div className='padA'>
+      <ul style={{justifyContent:'flex-start',listStyleType:'none'}}>
+        <li><FaUser/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free expert advice</li>
+        <li><FaShieldAlt/> &nbsp;&nbsp;&nbsp;&nbsp;it's Safe and Secure</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FaLock/>&nbsp;&nbsp; We never share your data</li>
       </ul>
       </div>
-      <div style={{padding:'20% 30% 0% 20%'}}>
-        <span style={{justifyContent:'flex-start',display:'flex'}}>
-        <FaStar/> TrustPilot &nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Excellent</strong><br/> </span>
+      <div className='padB'>
+        <span className='startA'>
+        <FaStar style={{color:'green',background:'#fff'}}/> TrustPilot &nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Excellent</strong><br/> </span>
         
         </span>
-        <span><FaRegStar/><FaRegStar/><FaRegStar/><FaRegStar/><FaRegStar/>&nbsp; Based on over 5000 reviews</span>
-        <div>
-            <span>We're authorised by the Financial Conduct Authority </span>
-        </div>
+        <span><FaRegStar className='green'/><FaRegStar className='green'/><FaRegStar className='green'/>
+        <FaRegStar className='green'/><FaRegStar className='green'/>&nbsp; Based on over 5000 reviews</span>
+       
+            <div>We're authorised by the Financial Conduct Authority </div>
+        
       </div>
     </div>
     </div>
@@ -149,8 +150,8 @@ function AddForm() {
       {/* <pre>{JSON.stringify(<form action="" method="post"></form>, null, 2)}</pre> */}
     </form>
 
-    <div style={{padding:'10% 20% 0% 10%'}}>
-        <span style={{justifyContent:'flex-start',display:'flex'}}>
+    <div className='padC'>
+        <span className='startA'>
         <div id="centerDiv">
             <ul className="centerUL">
                 <li><a href="#">Terms & Conditions</a>&nbsp;&nbsp;</li>
