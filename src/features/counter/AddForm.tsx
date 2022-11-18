@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
 import './App.css'
-import { FormState, useForm, useFormState } from "react-hook-form";
+import { FormState, useForm, useFormState} from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-
+import { FaStar,FaRegStar } from "react-icons/fa"; 
 import { userAdded } from './counterSlice';
 
 const sleep = (ms: number | undefined) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -24,7 +24,7 @@ function AddForm() {
     register,
     handleSubmit,
     getValues,
-    formState:  { errors }} =  useForm<formValues>({      
+    formState:  { errors,isDirty,isValid }} =  useForm<formValues>({      
       defaultValues: {
         firstName:'',lastName:'',mail:'',password:'',referred:'No',referralCode:''
       },
@@ -77,10 +77,15 @@ function AddForm() {
         <li>Free expert advice</li>
       </ul>
       </div>
-      <div style={{padding:'20% 0% 0% 20%'}}>
+      <div style={{padding:'20% 30% 0% 20%'}}>
         <span style={{justifyContent:'flex-start',display:'flex'}}>
-          TrustPilot
+        <FaStar/> TrustPilot &nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Excellent</strong><br/> </span>
+        
         </span>
+        <span><FaRegStar/><FaRegStar/><FaRegStar/><FaRegStar/><FaRegStar/>&nbsp; Based on over 5000 reviews</span>
+        <div>
+            <span>We're authorised by the Financial Conduct Authority </span>
+        </div>
       </div>
     </div>
     </div>
@@ -93,11 +98,11 @@ function AddForm() {
       {/* <Counter/> */}
       <h3>Create your login</h3>
       {/* <label htmlFor="firstName">First Name</label> */}
-      <input placeholder="First name" {...register("firstName", { required: true,pattern:/^[a-zA-Z\u00C0-\u00FF]*$/i ,min: 3, max: 50 })} />
+      <input placeholder="First name" {...register("firstName", { required: true,pattern:/^[a-zA-Z\u00C0-\u00FF]*$/i ,minLength: 3, maxLength: 50 })} />
       {/* {errors.firstName?.type === 'required' && <p role="alert">First name is required</p>} */}
       {errors.firstName && <p role="alert">First Name is not Correct</p>}
       {/* <label htmlFor="lastName">Last Name</label> */}
-      <input placeholder="Last Name" {...register("lastName", { required: true ,pattern:/^[a-zA-Z\u00C0-\u00FF]*$/i,min: 3, max: 50})} />
+      <input placeholder="Last Name" {...register("lastName", { required: true ,pattern:/^[a-zA-Z\u00C0-\u00FF]*$/i,minLength: 3, maxLength: 50})} />
       {/* {errors.lastName?.type === 'required' && <p role="alert">Last name is required</p>} */}
       {errors.lastName && <p role="alert">LastName is not Correct</p>}
       {/* <label htmlFor="email">Email</label> */}
@@ -111,7 +116,7 @@ function AddForm() {
       <input
         placeholder="Enter password"
         type="password"
-        {...register("password", { required: true,min:8,max:20,pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/})}
+        {...register("password", { required: true,minLength:8,maxLength:20,pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/})}
       />
       {errors.password && <p role="alert">Password id is not Correct</p>}
     
@@ -130,7 +135,7 @@ function AddForm() {
     <div  style={{display:getValues("referred")=='No'?'none':''}}>
         
       {/* <label  htmlFor="referralCode">Referral code</label> */}
-      <input placeholder="Referral code" {...register("referralCode", { max: 20 })} />
+      <input placeholder="Referral code" {...register("referralCode", { maxLength: 20 })} />
       {errors.referralCode && <p role="alert">Referral Code have only max 20 Characters</p>}
       {/* {errors.referralCode?.type === 'required' && <p role="alert">Referral code is required</p>} */}
     </div>
@@ -140,9 +145,22 @@ function AddForm() {
           "There are errors, check your console."}
       </div> */}
       
-      <input type="submit" />
+      <input type="submit" disabled={!isValid || !isDirty}/>
       {/* <pre>{JSON.stringify(<form action="" method="post"></form>, null, 2)}</pre> */}
     </form>
+
+    <div style={{padding:'10% 20% 0% 10%'}}>
+        <span style={{justifyContent:'flex-start',display:'flex'}}>
+        <div id="centerDiv">
+            <ul className="centerUL">
+                <li><a href="#">Terms & Conditions</a>&nbsp;&nbsp;</li>
+                <li><a href="#">Privacy Policy</a>&nbsp;&nbsp;</li>
+                <li><a href="#">Reg Information </a>&nbsp;&nbsp;</li>
+                <li><a href="#">v2.16</a></li>
+            </ul>
+        </div>
+      </span>
+    </div>
     </div>
     </>
     </div>

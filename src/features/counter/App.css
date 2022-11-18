@@ -263,3 +263,23 @@ justify-content: flex-end;
   flex-direction: column;
   align-items: center;
 }
+
+div#centerDiv {
+  width: 100%;
+  text-align: center;
+  border: 0px solid #0e101c;
+}
+ul.centerUL {
+  margin: 2px auto;
+  line-height: 1.4;
+  padding-left: 0;
+}
+.centerUL li {
+  display: inline;
+  text-align: center;
+  color: #0e101c;
+}
+.centerUL li a{
+  color: #0e101c;
+  
+}
